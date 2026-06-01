@@ -1,6 +1,7 @@
 import express from "express";
 import isAuth from "../middlewares/isAuth.js";
-import { generateComponent, getAllComponents, publishComponent, saveComponent } from "../controllers/component.controller.js";
+import { generateComponent, getAllComponents } from "../controllers/aicomponent.controller.js";
+import { publishComponent, saveComponent } from "../controllers/component.controller.js";
 
 
 const componentRouter = express.Router();
