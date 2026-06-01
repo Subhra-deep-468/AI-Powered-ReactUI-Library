@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { FiZap, FiCheck, FiLock, FiArrowLeft } from "react-icons/fi";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ServerUrl } from "../App";
 import axios from "axios"
@@ -43,10 +44,11 @@ const plans = [
 
 export default function PricingPage() {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [loadingPlan, setLoadingPlan] = useState(null);
 
-  
   const handlePayment = async (plan) => {
+    setLoadingPlan(plan.name);
     try {
       
 
@@ -64,7 +66,7 @@ export default function PricingPage() {
       amount: result.data.amount,
       currency: "INR",
       name: "Virtual.AI",
-      description: `${plan.name} - ${plan.credits} Credits`,
+      description: `${plan.name} - ${plan.aiCredits} Credits`,
       order_id: result.data.id,
 
       handler:async function (response) {
@@ -83,11 +85,10 @@ export default function PricingPage() {
 
       const rzp = new window.Razorpay(options)
       rzp.open()
-
-      setLoadingPlan(null);
     } catch (error) {
      console.log(error)
-     
+    } finally {
+      setLoadingPlan(null);
     }
   }
 
@@ -235,7 +236,7 @@ export default function PricingPage() {
               {/* CTA */}
               <button
                 onClick={()=>handlePayment(plan)}
-                disabled={plan.disabled}
+                disabled={plan.disabled || loadingPlan === plan.name}
                 className="w-full py-3 rounded-xl text-sm font-semibold transition-all"
                 style={{
                   cursor: plan.disabled ? "not-allowed" : "pointer",
@@ -251,7 +252,11 @@ export default function PricingPage() {
                   <span className="flex items-center justify-center gap-2">
                     <FiCheck size={14} /> {plan.cta}
                   </span>
-                ) : plan.cta}
+                ) : loadingPlan === plan.name ? (
+                  "Processing..."
+                ) : (
+                  plan.cta
+                )}
               </button>
             </motion.div>
           ))}
