@@ -285,7 +285,7 @@ export default function Home() {
             <span className="ml-3 text-[11px] text-white/20 font-mono">App.jsx</span>
           </div>
           <div className="font-mono text-[11px] sm:text-[12.5px] leading-6 space-y-0.5 min-w-[280px]">
-            <p><span className="text-[#3be8ff]/60">import</span> <span className="text-white/80">{"{ Button, Card }"}</span> <span className="text-[#3be8ff]/60">from</span> <span className="text-[#aaff80]/70">'virtual-ui-lib'</span><span className="text-white/30">;</span></p>
+            <p><span className="text-[#3be8ff]/60">import</span> <span className="text-white/80">{"{ Button, Card }"}</span> <span className="text-[#3be8ff]/60">from</span> <span className="text-[#aaff80]/70">'virtual-ui-component-lib-subhradeep'</span><span className="text-white/30">;</span></p>
             <p className="text-white/20">{" "}</p>
             <p><span className="text-[#3be8ff]/60">export default function</span> <span className="text-[#ffd580]/80">App</span><span className="text-white/50">() {"{"}</span></p>
             <p><span className="text-white/30">{"  return ("}</span></p>
